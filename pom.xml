@@ -17,7 +17,7 @@
     <description>Stock API Application</description>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>14</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
