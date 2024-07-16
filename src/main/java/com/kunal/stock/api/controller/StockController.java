@@ -71,7 +71,14 @@ public class StockController {
     public ResponseEntity<List<Stock>> getStocks() {
         log.info("Getting All Stocks");
         try {
-            Optional<List<Stock>> stocks = Optional.of(stockRepository.findAll().stream().toList()).stream().findAny();
+        	// Java 16
+            /*Optional<List<Stock>> stocks = Optional.of(stockRepository.findAll().stream().toList()).stream().findAny();*/
+            
+        	// Java 14
+        	Optional<List<Stock>> stocks = Optional.of(stockRepository.findAll().stream().collect(Collectors.toList())).stream().findAny();
+            
+        	//Optional<List<Stock>> stocks = Optional.ofNullable(stockRepository.findAll().stream().collect(Collectors.toList()));
+
             log.info("Returned stocks: {}", stocks);
             return new ResponseEntity<>(stocks.get(), HttpStatus.OK);
         } catch (Exception exception) {
